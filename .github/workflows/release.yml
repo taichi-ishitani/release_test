@@ -1,0 +1,21 @@
+name: release
+
+on: [push]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        repository: [release_test_foo, release_test_bar]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: taichi-ishitani/${{ matrix.repository }}
+          path: ${{ matrix.repository }}
+          token: ${{ secrets.PAT }}
+      - run: |
+          ./release.sh ${{ matrix.repository }} release_version_list.txt

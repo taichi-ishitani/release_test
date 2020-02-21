@@ -1,0 +1,2 @@
+release_test_foo:0.0.1
+release_test_bar:0.0.2
